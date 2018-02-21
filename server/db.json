@@ -1,0 +1,103 @@
+{
+  "users": [
+    {
+      "email": "qwerty@gmail.com",
+      "password": "qwerty",
+      "id": 3
+    },
+    {
+      "email": "example@mail.ru",
+      "password": "example",
+      "id": 4
+    },
+    {
+      "email": "user@gmail.ru",
+      "password": "user",
+      "id": 5
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Walk"
+    },
+    {
+      "id": 2,
+      "name": "Bicycle"
+    },
+    {
+      "id": 3,
+      "name": "Car"
+    },
+    {
+      "id": 4,
+      "name": "Other"
+    }
+  ],
+  "routes": [
+    {
+      "id": 1,
+      "name": "Awesome route",
+      "description": "desc",
+      "categoryId": 1,
+      "length": 50.5,
+      "route": [
+        {
+          "lat": 40.13123,
+          "lng": 56.52342
+        },
+        {
+          "lat": 40.13123,
+          "lng": 56.52342
+        },
+        {
+          "lat": 40.13123,
+          "lng": 56.52342
+        }
+      ],
+      "userId": 3
+    },
+    {
+      "userId": 5,
+      "name": "My user route",
+      "description": "User route by bicycle",
+      "categoryId": "2",
+      "route": [
+        {
+          "lat": 49.4413806747225,
+          "lng": 32.06434057511012
+        },
+        {
+          "lat": 49.44213409472432,
+          "lng": 32.0629672840945
+        },
+        {
+          "lat": 49.44295726260401,
+          "lng": 32.061765654455826
+        }
+      ],
+      "id": 2
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "description": "desc",
+      "rating": 7,
+      "userId": 1
+    },
+    {
+      "UserId": 3,
+      "rating": 4,
+      "description": " Wow! You route are amazing!",
+      "id": 2
+    }
+  ],
+  "favorites": [
+    {
+      "id": 1,
+      "userId": 1,
+      "routeId": 1
+    }
+  ]
+}
