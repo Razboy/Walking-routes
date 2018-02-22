@@ -36,28 +36,6 @@
   ],
   "routes": [
     {
-      "id": 1,
-      "name": "Awesome route",
-      "description": "desc",
-      "categoryId": 1,
-      "length": 50.5,
-      "route": [
-        {
-          "lat": 40.13123,
-          "lng": 56.52342
-        },
-        {
-          "lat": 40.13123,
-          "lng": 56.52342
-        },
-        {
-          "lat": 40.13123,
-          "lng": 56.52342
-        }
-      ],
-      "userId": 3
-    },
-    {
       "userId": 5,
       "name": "My user route",
       "description": "User route by bicycle",
@@ -77,20 +55,173 @@
         }
       ],
       "id": 2
+    },
+    {
+      "userId": 3,
+      "name": "Shop",
+      "description": "My favorite shop",
+      "categoryId": "1",
+      "route": [
+        {
+          "lat": 49.44266427223078,
+          "lng": 32.04644487656276
+        },
+        {
+          "lat": 49.44389202971089,
+          "lng": 32.04786108292262
+        },
+        {
+          "lat": 49.44484073034431,
+          "lng": 32.04914854324977
+        }
+      ],
+      "id": 3
+    },
+    {
+      "userId": 3,
+      "name": "Work",
+      "description": "Road to work",
+      "categoryId": "3",
+      "route": [
+        {
+          "lat": 49.44779832626183,
+          "lng": 32.05292509354274
+        },
+        {
+          "lat": 49.444617508317286,
+          "lng": 32.05884741104762
+        },
+        {
+          "lat": 49.441241151229626,
+          "lng": 32.06446932114284
+        },
+        {
+          "lat": 49.43761340107205,
+          "lng": 32.05961988724391
+        }
+      ],
+      "id": 4
+    },
+    {
+      "userId": 4,
+      "name": "Club",
+      "description": "Road to the club",
+      "categoryId": "",
+      "route": [
+        {
+          "lat": 49.44218990315284,
+          "lng": 32.07258032120387
+        },
+        {
+          "lat": 49.44417106121443,
+          "lng": 32.07197950638454
+        },
+        {
+          "lat": 49.44601262931326,
+          "lng": 32.07120703018825
+        }
+      ],
+      "id": 5
+    },
+    {
+      "userId": 4,
+      "name": "Ride",
+      "description": "My bicycle ride route",
+      "categoryId": "2",
+      "route": [
+        {
+          "lat": 49.439343592313506,
+          "lng": 32.04193876541774
+        },
+        {
+          "lat": 49.449528158158216,
+          "lng": 32.055070860754654
+        }
+      ],
+      "id": 6
     }
   ],
   "comments": [
     {
-      "id": 1,
-      "description": "desc",
-      "rating": 7,
-      "userId": 1
+      "UserId": 5,
+      "rating": 1,
+      "description": "shit",
+      "routeId": 2,
+      "id": 1
     },
     {
       "UserId": 3,
       "rating": 4,
-      "description": " Wow! You route are amazing!",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "routeId": 3,
       "id": 2
+    },
+    {
+      "UserId": 3,
+      "rating": 5,
+      "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "routeId": 3,
+      "id": 3
+    },
+    {
+      "comments": [
+        {
+          "UserId": 5,
+          "rating": 1,
+          "description": "shit",
+          "routeId": 2,
+          "id": 1
+        },
+        {
+          "UserId": 3,
+          "rating": 4,
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "routeId": 3,
+          "id": 2
+        },
+        {
+          "UserId": 3,
+          "rating": 5,
+          "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "routeId": 3,
+          "id": 3
+        }
+      ]
+    },
+    {
+      "UserId": 3,
+      "rating": 5,
+      "description": "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+      "routeId": 3,
+      "id": 4
+    },
+    {
+      "UserId": 4,
+      "rating": 2,
+      "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+      "routeId": 5,
+      "id": 5
+    },
+    {
+      "UserId": 4,
+      "rating": 2,
+      "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+      "routeId": 5,
+      "id": 6
+    },
+    {
+      "UserId": 4,
+      "rating": 2,
+      "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+      "routeId": 5,
+      "id": 7
+    },
+    {
+      "UserId": 3,
+      "rating": 4,
+      "description": "qqqqqqqq",
+      "routeId": 3,
+      "id": 8
     }
   ],
   "favorites": [

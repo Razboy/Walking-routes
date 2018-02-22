@@ -25,7 +25,9 @@ export const Map = withGoogleMap((props) => {
             defaultZoom={15}
             defaultCenter={{lat:49.4436409, lng:32.05685149}}
             >
-
+            <Polyline
+                path={props.markers}
+            />
             {markers}
             {console.log('props.polylines',props.polylines)}
             {props.polylines}

@@ -13,10 +13,12 @@ export class Users extends React.Component {
             id:0,
             MapId:0,
             description:'',
-            rating:0
+            rating:0,
+            comments:[]
         }
     this.users = this.users.bind(this)
     this.routes = this.routes.bind(this)
+    this.comments = this.comments.bind(this)
     };
 
     users(){
@@ -41,11 +43,29 @@ export class Users extends React.Component {
           })
         }
 
+    comments(){
+        let url = 'http://localhost:3001/comments';
+        let comments = []
+        fetch(url)
+        .then(response=>response.json())
+        .then(res=>{ 
+            console.log('res',res)
+            this.setState({comments:res})
+          })
+        }
+
     componentDidMount() {
         this.users(),
-        this.routes()
+        this.routes(),
+        this.comments()
     }
-
+    getUserName(id){
+        console.log(id)
+        let findUser = this.state.users.find((user,index)=>{
+            return user.id==id
+        })
+        return findUser.email 
+    }
 render() {
     let userName = JSON.parse(localStorage.getItem('user'));
 
@@ -81,9 +101,10 @@ render() {
                            <h5>Name: {value.name}</h5><br/>
                            <h5>Description: {value.description}</h5>
                     </div>
+                    <br/>
                    <div className='text-center'>
                        <h3>Comment</h3>
-                       <textarea onChange={(e)=>this.setState({description:e.target.value})} > </textarea><br/>
+                       <textarea onChange={(e)=>this.setState({description:e.target.value})}></textarea><br/>
                        <span></span>
                        <ReactStar {...this.props} initialRating={this.state.rating} onChange={(e)=>this.setState({rating:e})} /><br/>
                        <button onClick={()=>{
@@ -97,15 +118,36 @@ render() {
                                    body: JSON.stringify({
                                        UserId:value.userId,
                                        rating:this.state.rating,
-                                       description:this.state.description
+                                       description:this.state.description,
+                                       routeId:value.id
                                    })
                                });
-                       }}>add comments</button>
-                   </div>
+                               let comments = this.state.comments
+                               comments.push({
+                                    UserId:value.userId,
+                                    rating:this.state.rating,
+                                    description:this.state.description,
+                                    routeId:value.id
+                                })   
+                               this.setState({comments:comments})
+                               
+                       }}>Add comment</button>
+                    </div>
+                       <br/>
+
                </div>
            )}
     });
-
+    let comments = this.state.comments.map((value,index)=>{
+        if(this.state.MapId===value.routeId){
+            return (
+                <div key={index} className="offset-1 col-md-10">
+                    <h5>{this.getUserName(value.UserId)}</h5>
+                    <p>{value.description}</p>
+                    <h6>Rating: {value.rating}</h6>
+                </div>
+            )}
+    })
     return(
         <div>
             <ul style={{listStyleType: "none", display: "block"}} className='offset-9'>
@@ -124,7 +166,11 @@ render() {
             </ul>    
             <ul className="text-center">
                 {userdate}
-            </ul>    
+            </ul>
+                <br/>    
+            <div>
+                {comments}
+            </div>
         </div>
     )
 }
