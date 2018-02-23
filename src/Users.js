@@ -116,15 +116,16 @@ render() {
                                    },
                                    method: "POST",
                                    body: JSON.stringify({
-                                       UserId:value.userId,
+                                       UserId:localStorage.getItem('id'),
                                        rating:this.state.rating,
                                        description:this.state.description,
                                        routeId:value.id
                                    })
                                });
                                let comments = this.state.comments
+                               console.log(localStorage.getItem('id'))
                                comments.push({
-                                    UserId:value.userId,
+                                    UserId:localStorage.getItem('id'),
                                     rating:this.state.rating,
                                     description:this.state.description,
                                     routeId:value.id
@@ -139,7 +140,7 @@ render() {
            )}
     });
     let comments = this.state.comments.map((value,index)=>{
-        if(this.state.MapId===value.routeId){
+        if(this.state.MapId===value.routeId) {
             return (
                 <div key={index} className="offset-1 col-md-10">
                     <h5>{this.getUserName(value.UserId)}</h5>

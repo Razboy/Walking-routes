@@ -57,6 +57,7 @@ class Login extends Component {
 
                                for(let i = 0; i < usersData.length; i++){
                                     if(usersData[i].password === this.state.password && usersData[i].email === this.state.email) {
+                                      console.log(usersData[i])
                                         localStorage.setItem('user',JSON.stringify(usersData[i].email));
                                         localStorage.setItem('id',JSON.stringify(usersData[i].id));
                                         console.log('User',localStorage.getItem('user'),'id',localStorage.getItem('id'));

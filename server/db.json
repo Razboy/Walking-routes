@@ -164,31 +164,6 @@
       "id": 3
     },
     {
-      "comments": [
-        {
-          "UserId": 5,
-          "rating": 1,
-          "description": "shit",
-          "routeId": 2,
-          "id": 1
-        },
-        {
-          "UserId": 3,
-          "rating": 4,
-          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          "routeId": 3,
-          "id": 2
-        },
-        {
-          "UserId": 3,
-          "rating": 5,
-          "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-          "routeId": 3,
-          "id": 3
-        }
-      ]
-    },
-    {
       "UserId": 3,
       "rating": 5,
       "description": "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
@@ -222,6 +197,41 @@
       "description": "qqqqqqqq",
       "routeId": 3,
       "id": 8
+    },
+    {
+      "UserId": 3,
+      "rating": 3,
+      "description": "dfhdfhfdh",
+      "routeId": 3,
+      "id": 9
+    },
+    {
+      "UserId": 3,
+      "rating": 2,
+      "description": "123",
+      "routeId": 3,
+      "id": 10
+    },
+    {
+      "UserId": 3,
+      "rating": 2,
+      "description": "qqq",
+      "routeId": 3,
+      "id": 11
+    },
+    {
+      "UserId": "4",
+      "rating": 3,
+      "description": ";lkjh",
+      "routeId": 3,
+      "id": 12
+    },
+    {
+      "UserId": "4",
+      "rating": 3,
+      "description": ";lkjh",
+      "routeId": 3,
+      "id": 13
     }
   ],
   "favorites": [
