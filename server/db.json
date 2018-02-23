@@ -190,48 +190,6 @@
       "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
       "routeId": 5,
       "id": 7
-    },
-    {
-      "UserId": 3,
-      "rating": 4,
-      "description": "qqqqqqqq",
-      "routeId": 3,
-      "id": 8
-    },
-    {
-      "UserId": 3,
-      "rating": 3,
-      "description": "dfhdfhfdh",
-      "routeId": 3,
-      "id": 9
-    },
-    {
-      "UserId": 3,
-      "rating": 2,
-      "description": "123",
-      "routeId": 3,
-      "id": 10
-    },
-    {
-      "UserId": 3,
-      "rating": 2,
-      "description": "qqq",
-      "routeId": 3,
-      "id": 11
-    },
-    {
-      "UserId": "4",
-      "rating": 3,
-      "description": ";lkjh",
-      "routeId": 3,
-      "id": 12
-    },
-    {
-      "UserId": "4",
-      "rating": 3,
-      "description": ";lkjh",
-      "routeId": 3,
-      "id": 13
     }
   ],
   "favorites": [

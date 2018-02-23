@@ -103,39 +103,44 @@ render() {
                     </div>
                     <br/>
                    <div className='text-center'>
-                       <h3>Comment</h3>
-                       <textarea onChange={(e)=>this.setState({description:e.target.value})}></textarea><br/>
-                       <span></span>
-                       <ReactStar {...this.props} initialRating={this.state.rating} onChange={(e)=>this.setState({rating:e})} /><br/>
-                       <button onClick={()=>{
-                           fetch("http://localhost:3001/comments",
-                               {
-                                   headers: {
-                                       'Accept': 'application/json',
-                                       'Content-Type': 'application/json'
-                                   },
-                                   method: "POST",
-                                   body: JSON.stringify({
-                                       UserId:localStorage.getItem('id'),
-                                       rating:this.state.rating,
-                                       description:this.state.description,
-                                       routeId:value.id
-                                   })
-                               });
-                               let comments = this.state.comments
-                               console.log(localStorage.getItem('id'))
-                               comments.push({
-                                    UserId:localStorage.getItem('id'),
-                                    rating:this.state.rating,
-                                    description:this.state.description,
-                                    routeId:value.id
-                                })   
-                               this.setState({comments:comments})
-                               
-                       }}>Add comment</button>
+                      {
+                            localStorage.getItem('id')!==null?
+                            (
+                                <div>
+                                <h3>Comment</h3>
+                                   <textarea onChange={(e)=>this.setState({description:e.target.value})}></textarea><br/>
+                                   <span></span>
+                                   <ReactStar {...this.props} initialRating={this.state.rating} onChange={(e)=>this.setState({rating:e})} /><br/>
+                                   <button onClick={()=>{
+                                       fetch("http://localhost:3001/comments",
+                                           {
+                                               headers: {
+                                                   'Accept': 'application/json',
+                                                   'Content-Type': 'application/json'
+                                               },
+                                               method: "POST",
+                                               body: JSON.stringify({
+                                                   UserId:localStorage.getItem('id'),
+                                                   rating:this.state.rating,
+                                                   description:this.state.description,
+                                                   routeId:value.id
+                                               })
+                                           });
+                                           let comments = this.state.comments
+                                           console.log(localStorage.getItem('id'))
+                                           comments.push({
+                                                UserId:localStorage.getItem('id'),
+                                                rating:this.state.rating,
+                                                description:this.state.description,
+                                                routeId:value.id
+                                            })   
+                                           this.setState({comments:comments})   
+                                   }}>Add comment</button>
+                        </div>
+                            ):null
+                      }
                     </div>
                        <br/>
-
                </div>
            )}
     });
