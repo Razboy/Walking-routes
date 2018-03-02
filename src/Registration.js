@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import Header from './header';
 
 export default class Registration extends React.Component {
@@ -28,7 +29,6 @@ export default class Registration extends React.Component {
             console.log("No matches");
         }
     }
-        localStorage.setItem('email', JSON.stringify(this.state.email));
         fetch("http://localhost:3001/users",
             {
                 headers: {
@@ -39,7 +39,7 @@ export default class Registration extends React.Component {
                     body: JSON.stringify({email :this.state.email, password: this.state.password})
             }
         );
-        let path = '/Users';
+        let path = '/';
         this.props.history.push(path);
     }
 

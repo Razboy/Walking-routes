@@ -118,14 +118,14 @@ render() {
                             (
                                 <div>
                                 <h3>Comment</h3>
-                                    <textarea onChange={(e)=>this.setState({description:e.target.value})}></textarea><br/>
+                                    <textarea value={this.state.description} onChange={(e)=>this.setState({description:e.target.value})}></textarea><br/>
                                         <span style={{display: "table", margin: "0 auto"}}>
                                             <ReactStars count={10} size={24} value={this.state.rating} onChange={(e)=>this.setState({rating:e})}/>
                                         </span>
                                             <br/>
                                     <button onClick={()=>{
                                         this.comments()
-
+                                        this.setState({description:''})
                                     }}>Add comment</button>
                                 </div>
                             ):null

@@ -9,11 +9,6 @@
       "email": "test@mail.ru",
       "password": "test",
       "id": 2
-    },
-    {
-      "email": "new@mail.ru",
-      "password": "new",
-      "id": 3
     }
   ],
   "categories": [
@@ -97,6 +92,23 @@
       "description": "My favorite shop",
       "user": 2,
       "id": 3
+    },
+    {
+      "name": "test",
+      "category": "Bicycle",
+      "markers": [
+        {
+          "lat": 49.447324006853464,
+          "lng": 32.05369721219847
+        },
+        {
+          "lat": 49.446054482329814,
+          "lng": 32.0565296249182
+        }
+      ],
+      "description": "test",
+      "user": 3,
+      "id": 4
     }
   ],
   "comments": [
