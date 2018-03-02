@@ -1,19 +1,19 @@
 {
   "users": [
     {
-      "email": "qwerty@gmail.com",
-      "password": "qwerty",
-      "id": 3
-    },
-    {
       "email": "example@mail.ru",
       "password": "example",
-      "id": 4
+      "id": 1
     },
     {
-      "email": "user@gmail.ru",
-      "password": "user",
-      "id": 5
+      "email": "test@mail.ru",
+      "password": "test",
+      "id": 2
+    },
+    {
+      "email": "new@mail.ru",
+      "password": "new",
+      "id": 3
     }
   ],
   "categories": [
@@ -36,167 +36,111 @@
   ],
   "routes": [
     {
-      "userId": 5,
-      "name": "My user route",
-      "description": "User route by bicycle",
-      "categoryId": "2",
-      "route": [
+      "name": "Walking route",
+      "category": "Walk",
+      "markers": [
         {
-          "lat": 49.4413806747225,
-          "lng": 32.06434057511012
+          "lat": 49.44199457337513,
+          "lng": 32.063138587930894
         },
         {
-          "lat": 49.44213409472432,
-          "lng": 32.0629672840945
+          "lat": 49.4477704252472,
+          "lng": 32.052838905313706
         },
         {
-          "lat": 49.44295726260401,
-          "lng": 32.061765654455826
+          "lat": 49.443278154813584,
+          "lng": 32.047131164530015
+        },
+        {
+          "lat": 49.443278154813584,
+          "lng": 32.047131164530015
         }
       ],
+      "description": "My Walking route",
+      "user": 1,
+      "id": 1
+    },
+    {
+      "name": "Ride",
+      "category": "Bicycle",
+      "markers": [
+        {
+          "lat": 49.44785412824347,
+          "lng": 32.0530534820349
+        },
+        {
+          "lat": 49.44196666905766,
+          "lng": 32.06339607999632
+        }
+      ],
+      "description": "ride route",
+      "user": 1,
       "id": 2
     },
     {
-      "userId": 3,
-      "name": "Shop",
+      "name": "Road to shop",
+      "category": "Walk",
+      "markers": [
+        {
+          "lat": 49.44135277005571,
+          "lng": 32.06425438688109
+        },
+        {
+          "lat": 49.43976217779825,
+          "lng": 32.062580688455796
+        },
+        {
+          "lat": 49.44104581767264,
+          "lng": 32.05974827573607
+        }
+      ],
       "description": "My favorite shop",
-      "categoryId": "1",
-      "route": [
-        {
-          "lat": 49.44266427223078,
-          "lng": 32.04644487656276
-        },
-        {
-          "lat": 49.44389202971089,
-          "lng": 32.04786108292262
-        },
-        {
-          "lat": 49.44484073034431,
-          "lng": 32.04914854324977
-        }
-      ],
+      "user": 2,
       "id": 3
-    },
-    {
-      "userId": 3,
-      "name": "Work",
-      "description": "Road to work",
-      "categoryId": "3",
-      "route": [
-        {
-          "lat": 49.44779832626183,
-          "lng": 32.05292509354274
-        },
-        {
-          "lat": 49.444617508317286,
-          "lng": 32.05884741104762
-        },
-        {
-          "lat": 49.441241151229626,
-          "lng": 32.06446932114284
-        },
-        {
-          "lat": 49.43761340107205,
-          "lng": 32.05961988724391
-        }
-      ],
-      "id": 4
-    },
-    {
-      "userId": 4,
-      "name": "Club",
-      "description": "Road to the club",
-      "categoryId": "",
-      "route": [
-        {
-          "lat": 49.44218990315284,
-          "lng": 32.07258032120387
-        },
-        {
-          "lat": 49.44417106121443,
-          "lng": 32.07197950638454
-        },
-        {
-          "lat": 49.44601262931326,
-          "lng": 32.07120703018825
-        }
-      ],
-      "id": 5
-    },
-    {
-      "userId": 4,
-      "name": "Ride",
-      "description": "My bicycle ride route",
-      "categoryId": "2",
-      "route": [
-        {
-          "lat": 49.439343592313506,
-          "lng": 32.04193876541774
-        },
-        {
-          "lat": 49.449528158158216,
-          "lng": 32.055070860754654
-        }
-      ],
-      "id": 6
     }
   ],
   "comments": [
     {
-      "UserId": 5,
-      "rating": 1,
-      "description": "shit",
-      "routeId": 2,
+      "UserId": 2,
+      "rating": 9,
+      "description": "example, you route are amazing",
+      "routeId": 1,
       "id": 1
     },
     {
-      "UserId": 3,
-      "rating": 4,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "UserId": 2,
+      "rating": 10,
+      "description": "my route - best route!",
       "routeId": 3,
       "id": 2
     },
     {
-      "UserId": 3,
-      "rating": 5,
-      "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      "routeId": 3,
+      "UserId": 1,
+      "rating": 3,
+      "description": "oups, i put incorrect data",
+      "routeId": 2,
       "id": 3
     },
     {
-      "UserId": 3,
-      "rating": 5,
-      "description": "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+      "UserId": 1,
+      "rating": 8.5,
+      "description": "yes, i agree",
       "routeId": 3,
       "id": 4
     },
     {
-      "UserId": 4,
-      "rating": 2,
-      "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-      "routeId": 5,
+      "UserId": 1,
+      "rating": 9,
+      "description": "i like you route",
+      "routeId": 3,
       "id": 5
     },
     {
-      "UserId": 4,
-      "rating": 2,
-      "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-      "routeId": 5,
+      "UserId": 1,
+      "rating": 4.5,
+      "description": "yes",
+      "routeId": 2,
       "id": 6
-    },
-    {
-      "UserId": 4,
-      "rating": 2,
-      "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-      "routeId": 5,
-      "id": 7
-    }
-  ],
-  "favorites": [
-    {
-      "id": 1,
-      "userId": 1,
-      "routeId": 1
     }
   ]
 }

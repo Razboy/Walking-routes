@@ -1,30 +1,31 @@
 import React from 'react';
 import {Map} from './Map';
-import {Polyline} from "react-google-maps";
-import {Route, Link} from 'react-router-dom';
+// import {Polyline} from "react-google-maps";
+// import {Route, Link} from 'react-router-dom';
+import Header from './header';
 
-
-export class WalkingRoute extends React.Component {
-    constructor(props) {
-        super(props);
+export default class WalkingRoute extends React.Component {
+    constructor() {
+        super();
         this.state = {
-            categories:[],
-            name:'',
-            description:'',
-            categoryId:'',
-            markers:[],
-            polylines:[],
-            userId:''
+            category: "",
+            allCategories: [],
+            name: "",
+            description: "",
+            markers: [],
+            lenght: 123,
+            polylines: []
           }
-        this.categories = this.categories.bind(this)
+        this.verification = this.verification.bind(this)
         this.handleMarkers = this.handleMarkers.bind(this)
         this.changeCoordinatesOfMarker = this.changeCoordinatesOfMarker.bind(this)
-        this.polyline = this.polyline.bind(this)
     };
 
-    polyline(){
-        this.setState({polylines:<Polyline path={this.state.markers}/>})
-    }
+    componentDidMount() {
+        fetch("http://localhost:3001/categories")
+            .then(response => response.json())
+            .then(data => {this.setState({allCategories: data})});
+        };
 
     handleMarkers(lat,lng) {
         let markers = this.state.markers;
@@ -32,88 +33,69 @@ export class WalkingRoute extends React.Component {
             lat:lat,
             lng:lng
         })
-        console.log(markers)
         this.setState({markers:markers})
-        this.polyline()
     }
 
-    changeCoordinatesOfMarker(index, lat, lng){
+    changeCoordinatesOfMarker(index, lat, lng) {
         let markers = this.state.markers;
         markers[index].lat = lat;
         markers[index].lng = lng;
-        console.log('changedMarkers', markers);
         this.setState({markers:markers});
     }
 
-    categories(){
-        let url = 'http://localhost:3001/categories';
-        let categories =[]
-        fetch(url)
-        .then(response=>response.json())
-        .then(res=>{ 
-            console.log('res',res)
-            this.setState({categories:res})
-        })
+    verification() {
+        fetch("http://localhost:3001/routes",
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({
+                name :this.state.name, 
+                category: this.state.category, 
+                markers: this.state.markers, 
+                length: this.state.length, 
+                description: this.state.description, 
+                user: JSON.parse(localStorage.getItem('id'))})
+        });
+        alert('You have successfully created the route')
     }
-    componentDidMount(){
-        this.categories()
-    }
-    render() {
-        let userName = JSON.parse(localStorage.getItem('user'));
-        let userId = JSON.parse(localStorage.getItem('id'));
-        let categories = this.state.categories.map((category,index)=>{
-            return (<option key={index} value={category.id}>{category.name}</option>)
-        })
-        return (
-            <div> 
-                <ul style={{listStyleType: "none", display: "block"}} className='offset-9'>
-                <li style={{float: "left", marginRight: "10px"}}>You login as: {userName}</li>
-                <li><Link to='/' onClick={()=>localStorage.clear()}>&#x274c;</Link></li>
-                </ul>
 
-                <h1 className="text-center">Adding Route</h1>
-                <div className="mx-auto mb-3 w-75">
-                    <Map 
-                        polylines={this.state.polylines}
-                        markers={this.state.markers}
-                        changeCoordinatesOfMarker = {this.changeCoordinatesOfMarker}
-                        handleMarkers={this.handleMarkers}
-                        containerElement={<div style={{height: '500px'}}/>} 
-                        mapElement={<div style={{height: '500px'}}/>}
-                    />
-                </div>
-                <div className="map-form text-center">
-                    <h3>Route details</h3>
-                    <input type="text" value={this.state.name} 
-                    onChange={(e)=>this.setState({name:e.target.value})} placeholder="Route title"/>
-                        <br/>
-                    <h5>Route categories</h5>    
-                    <select onChange={(e)=>this.setState({categoryId:e.target.value})}>
-                        {categories}
-                    </select>
-                    <h5>Route description</h5>   
-                    <input type="text" value={this.state.description} placeholder="Write some description"
-                    onChange={(e)=>this.setState({description:e.target.value})} placeholder="Route title"/>
-                        <br/>
-                    <button onClick={()=>{
-                 fetch("http://localhost:3001/routes",
-                    {
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                        method: "POST",
-                        body: JSON.stringify({
-                            userId:userId,
-                            name:this.state.name,
-                            description:this.state.description,
-                            categoryId:this.state.categoryId,
-                            route:this.state.markers
-                        })
-                    });    
-                    }}>Submit</button>
-                </div>
+    render() {
+       return (
+        <div>
+        <Header/>
+        <form className="container w-50 my-4" onSubmit={this.verification}>
+            <div className="row m-3">
+                <input type="text" placeholder="Route title" className="w-50 mx-auto" value={this.state.name} onChange={(e)=>this.setState({name:e.target.value})}/>
             </div>
-        );
+            <div className="row m-3">
+                <select className="w-50 mx-auto" value={this.state.category} onChange={(e)=>this.setState({category:e.target.value})}>
+                    <option value="" disabled hidden>Select your category</option>
+                    {this.state.allCategories.map((value, index) => {
+                        return (
+                            <option key={index} value={value.name}>{value.name}</option>
+                        )
+                    })
+                    }
+                </select>
+            </div>
+            <Map 
+                markers={this.state.markers}
+                handleMarkers={this.handleMarkers}
+                changeCoordinatesOfMarker={this.changeCoordinatesOfMarker}
+                containerElement={<div style={{height: '400px'}}/>}
+                mapElement={<div style={{height: `100%`}}/>}
+            />
+            <div className="row m-3">
+                <textarea placeholder="Route Description" className="col" style={{height:200}} value={this.state.description} onChange={(e)=>this.setState({description:e.target.value})}/>
+            </div>
+            <div className="row m-3">
+                <button type="submit" className="btn btn-primary px-2 col">Create route</button>
+            </div>
+      </form>
+      </div>
+       )
     }
 }

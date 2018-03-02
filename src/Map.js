@@ -3,9 +3,8 @@ import {withGoogleMap, GoogleMap, Marker, Polyline} from "react-google-maps";
 
 export const Map = withGoogleMap((props) => {
     
-    console.log("LngLat",props.markers);
-
     let markers = props.markers.map((value,index)=>{
+        
         return(
             <Marker
                 key={index}
@@ -18,7 +17,7 @@ export const Map = withGoogleMap((props) => {
                 }}
             />)
     });
-    console.log("markers",props.markers)
+
     return (
         <GoogleMap
             onClick={(e)=>{props.handleMarkers(e.latLng.lat(),e.latLng.lng())}}
@@ -29,7 +28,6 @@ export const Map = withGoogleMap((props) => {
                 path={props.markers}
             />
             {markers}
-            {console.log('props.polylines',props.polylines)}
             {props.polylines}
         </GoogleMap>
     )

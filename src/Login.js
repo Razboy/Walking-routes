@@ -1,87 +1,65 @@
-import React, { Component } from 'react';
-import {Route} from 'react-router-dom';
+import React from 'react';
+import {Link} from 'react-router-dom';
+import Header from './header';
 
-class Login extends Component {
-    constructor(props) {
-      super(props);
+export default class Login extends React.Component {
+    constructor() {
+      super();
       this.state = {
         email:'',
-        password:''
+        password:'',
+        users:[]
       }
+      this.verification = this.verification.bind(this);
     }
     
     componentDidMount() {
-      if (localStorage.getItem('users')!==null) {
-          this.props.history.push('/WalkingRoute');
+      fetch("http://localhost:3001/users")
+          .then(response => response.json())
+          .then(data => {this.setState({users: data})});
+
+      if (localStorage.getItem('email')!==null){
+          this.props.history.push('/Users');
       }
-  }
+    };
+
+    verification (e) {
+      for (let i = 0; i<this.state.users.length;i++) {
+          if(this.state.users[i].email===this.state.email && this.state.users[i].password===this.state.password) {
+              localStorage.setItem('email', JSON.stringify(this.state.email));
+              localStorage.setItem('id', JSON.stringify(this.state.users[i].id));
+              return this.props.history.push('/Users');
+          } else {
+              console.log("Failed to login");
+          }
+      }
+      e.preventDefault();
+      alert('Check the data for correctness');
+    }
   
-  //   login(){
-  //     console.log(this.state.email,this.state.password)
-  //     let url = 'http://localhost:3001/users?email='+this.state.email+'&password='+this.state.password;
-  //     fetch(url).then(response=>response.json()).then(res=>{
-  //       if (res == null) {
-  //         alert('Email or password are incorrect')
-  //       } else {
-  //     console.log(res)
-  //     localStorage.setItem('todos', JSON.stringify(res));
-  //     console.log(localStorage)     
-  //   }})
-  // }
-    
     render() {
       return (
-        <div className="App">
-          <div className="login">
-            <h1>Login</h1>
-            <div className="offset-2 col-md-8">
-              <input className="form-control" value={this.state.email} 
-                onChange={(e)=>this.setState({email:e.target.value})} 
-                type="email" placeholder="Enter you email here"></input>
-              <br/>
-              <input className="form-control" value={this.state.password}
-                onChange={(e)=>this.setState({password:e.target.value})}
-                type="password" placeholder="Enter you password here"></input>
-              <br/>
-              <Route render={({history}) => (
-                    <button onClick={() => {
-                        fetch("http://localhost:3001/users")
-                            .then(users => users.json())
-                            .then(usersData => {
-
-                                let isExists = false;
-                                if (this.state.email === '' || this.state.password === '') {
-                                    alert('Enter a data');
-                                    return;
-                                }
-
-                               for(let i = 0; i < usersData.length; i++){
-                                    if(usersData[i].password === this.state.password && usersData[i].email === this.state.email) {
-                                      console.log(usersData[i])
-                                        localStorage.setItem('user',JSON.stringify(usersData[i].email));
-                                        localStorage.setItem('id',JSON.stringify(usersData[i].id));
-                                        console.log('User',localStorage.getItem('user'),'id',localStorage.getItem('id'));
-                                        history.push('/WalkingRoute');
-                                        isExists = true;
-                                        break;
-                                    }else {
-                                        isExists = false;
-                                    }
-                               }
-
-                               if(isExists === false){
-                                    alert('Incorrect email or password')
-                                    this.setState({email:'',password:''})
-                               }
-                            });
-                    }}>Submit</button>
-                  )}/>
+        <div>
+        <Header/>
+        <form className="container w-50" onSubmit={this.verification}>
+            <div className="column align-items-center">
+                <div className="d-flex justify-content-center"><h1>Login</h1></div>
+                <div className="form-group">
+                    <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Enter you email" value={this.state.email} onChange={(e)=>this.setState({email:e.target.value})}/>
+                </div>
+                <div className="form-group">
+                    <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" value={this.state.password} onChange={(e)=>this.setState({password:e.target.value})}/>
+                </div>
+                <div className="d-flex justify-content-center">
+                    <button type="submit" className="btn btn-primary px-2">Login</button>
+                </div>
+                <div className="d-flex justify-content-end">
+                    <Link className="nav-link" to="/Registration">You not registered? <br/> Clik here to go registration</Link>
+                </div>
             </div>
-          </div>
+        </form>
         </div>
-        
       );
     }
   }
   
-  export default Login;

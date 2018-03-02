@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './App.css';
+import Header from './header';
 
-class Registration extends Component {
-    constructor(props) {
-      super(props);
+export default class Registration extends React.Component {
+    constructor() {
+      super();
       this.state = {
         email:'',
         password:'',
@@ -12,60 +12,56 @@ class Registration extends Component {
       this.verification = this.verification.bind(this)
     }
   
-    componentDidMount(){
+    componentDidMount() {
       fetch("http://localhost:3001/users")
           .then(response => response.json())
           .then(data => {this.setState({users: data})
-          console.log(data)
         })  
     };
 
-    verification() {
-        for (let i = 0; i<this.state.users.length; i++){
-            if(this.state.users[i].email===this.state.email) {
-                return alert('This email exist!');
-            } else {
-               return fetch("http://localhost:3001/users",
-                  {
-                      headers: {
-                          'Accept': 'application/json',
-                          'Content-Type': 'application/json'
-                      },
-                      method: "POST",
-                      body: JSON.stringify({email:this.state.email,password:this.state.password})
-                  });  
-                }
+    verification(e) {
+      for (let i = 0; i<this.state.users.length;i++) {
+        if(this.state.users[i].email===this.state.email) {
+            e.preventDefault();
+            return alert('This email exist!');
+        } else {
+            console.log("No matches");
         }
+    }
+        localStorage.setItem('email', JSON.stringify(this.state.email));
+        fetch("http://localhost:3001/users",
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                   method: "POST",
+                    body: JSON.stringify({email :this.state.email, password: this.state.password})
+            }
+        );
+        let path = '/Users';
+        this.props.history.push(path);
     }
 
     render() {
       return (
         <div>
-          <div className="registration">
-            <h1>Registration</h1>
-            <div className="offset-2 col-md-8">
-              <input className="form-control" value={this.state.email} 
-              onChange={(e)=>this.setState({email:e.target.value})}
-              type="email" placeholder="Enter you email here"></input>
-              <br/>
-              <input className="form-control" value={this.state.password} 
-              onChange={(e)=>this.setState({password:e.target.value})}
-              type="password" placeholder="Place you password here"></input>
-              <br/>
-              <button onClick={()=>{
-                  if (this.state.email === "" || this.state.password === "") {
-                      return alert('Some field is empty!')
-                  } else {
-                    this.verification();
-                  }
-                }
-                }>Submit</button>
-            </div>
-          </div>
-          
+          <Header/>
+          <form className="container w-50" onSubmit={this.verification}>
+                    <div className="d-flex justify-content-center"><h1>Registration</h1></div>
+                    <div className="form-group">
+                        <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Enter you email" value={this.state.email} onChange={(e)=>this.setState({email:e.target.value})}/>
+                    </div>
+                    <div className="form-group">
+                        <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Enter you password" value={this.state.password} onChange={(e)=>this.setState({password:e.target.value})}/>
+                    </div>
+                    <div className="d-flex justify-content-center">
+                        <button type="submit" className="btn btn-primary px-2" >Registration</button>
+                    </div>
+                </form>
         </div>
       );
     }
   }
   
-  export default Registration;
+  
